@@ -6,7 +6,8 @@
   --paper: #eeece3;
   --dark: #202921;
   --deep: #17211b;
-  --gold: #c6a875;
+  --navy: #092441;
+  --gold: #c6a04e;
   --olive: #777f69;
   --rust: #a66c53;
   --white: #fffefa;
@@ -45,9 +46,7 @@ a {
 
 img {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
 }
 
 button {
@@ -55,7 +54,7 @@ button {
   font: inherit;
 }
 
-/* TOP PROGRESS */
+/* PAGE PROGRESS */
 
 .scroll-progress {
   position: fixed;
@@ -99,15 +98,15 @@ button {
 /* HEADER */
 
 .header {
-  height: 90px;
-  padding: 0 6%;
+  min-height: 94px;
+  padding: 10px 6%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(246,244,238,.96);
+  background: rgba(246,244,238,.97);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
@@ -115,29 +114,15 @@ button {
 .logo {
   display: flex;
   align-items: center;
-  gap: 13px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
+  flex-shrink: 0;
 }
 
-.logo small {
+.brand-logo {
   display: block;
-  color: var(--muted);
-  font-size: 8px;
-  letter-spacing: 3px;
-  margin-top: 6px;
-}
-
-.logo-mark {
-  height: 42px;
-  width: 42px;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--rust);
-  font: 26px var(--serif);
+  width: 245px;
+  height: 72px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .navigation {
@@ -157,14 +142,15 @@ button {
 }
 
 .nav-button {
-  background: var(--dark);
+  background: var(--navy);
   color: white !important;
   padding: 16px 22px;
   transition: .3s;
 }
 
 .nav-button:hover {
-  background: var(--olive);
+  background: var(--gold);
+  color: var(--deep) !important;
 }
 
 .menu {
@@ -234,7 +220,7 @@ button {
 }
 
 .primary-button {
-  background: var(--dark);
+  background: var(--navy);
   color: white;
   padding: 19px 25px;
   font-size: 9px;
@@ -244,7 +230,8 @@ button {
 }
 
 .primary-button:hover {
-  background: var(--olive);
+  background: var(--gold);
+  color: var(--deep);
   transform: translateY(-4px);
 }
 
@@ -262,12 +249,15 @@ button {
   overflow: hidden;
 }
 
-.hero-visual img {
+.hero-visual > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   filter: saturate(.82);
   transition: transform 1.5s;
 }
 
-.hero-visual:hover img {
+.hero-visual:hover > img {
   transform: scale(1.035);
 }
 
@@ -280,10 +270,11 @@ button {
   background: var(--gold);
   border-radius: 50%;
   color: var(--deep);
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  font: 26px var(--serif);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font: 25px var(--serif);
   transform: rotate(-12deg);
 }
 
@@ -500,6 +491,12 @@ button {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1px;
+  transition: color .3s, border-color .3s;
+}
+
+.underlined-link:hover {
+  color: var(--rust);
+  border-color: var(--rust);
 }
 
 /* MANIFESTO */
@@ -584,6 +581,9 @@ button {
 }
 
 .living-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   filter: saturate(.8);
   transition: transform 1.2s;
 }
@@ -632,7 +632,14 @@ button {
 }
 
 .outdoor-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 1.2s;
+}
+
+.outdoor:hover .outdoor-image img {
+  transform: scale(1.035);
 }
 
 .outdoor-copy {
@@ -675,6 +682,9 @@ button {
 }
 
 .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   filter: saturate(.8);
   transition: transform 1s, filter .5s;
 }
@@ -710,6 +720,10 @@ button {
 
 .gallery-item b {
   font: 400 17px var(--serif);
+}
+
+.gallery-cta {
+  margin-top: 35px;
 }
 
 /* CONTACT */
@@ -794,10 +808,12 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 25px;
 }
 
-.footer-logo small {
-  color: #b4bcaf;
+.footer-logo .brand-logo {
+  width: 220px;
+  height: 75px;
 }
 
 footer p {
@@ -821,7 +837,7 @@ footer a {
   color: var(--gold);
 }
 
-/* LIGHTBOX */
+/* LIGHTBOX - PHOTO TOUR */
 
 .lightbox {
   display: none;
@@ -848,6 +864,7 @@ footer a {
   max-height: 80vh;
   max-width: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
 }
 
@@ -878,10 +895,26 @@ footer a {
   right: 20px;
 }
 
+/* TABLET */
+
+@media (max-width: 1000px) {
+  .navigation {
+    gap: 20px;
+  }
+
+  .brand-logo {
+    width: 210px;
+  }
+
+  .section {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+}
+
 /* MOBILE */
 
-@media(max-width: 800px) {
-
+@media (max-width: 800px) {
   .topbar {
     padding: 10px 4%;
     font-size: 7px;
@@ -889,17 +922,13 @@ footer a {
   }
 
   .header {
-    height: 75px;
-    padding: 0 5%;
+    min-height: 75px;
+    padding: 5px 5%;
   }
 
-  .logo {
-    font-size: 10px;
-  }
-
-  .logo-mark {
-    width: 36px;
-    height: 36px;
+  .brand-logo {
+    width: 190px;
+    height: 58px;
   }
 
   .menu {
@@ -914,13 +943,14 @@ footer a {
     height: 2px;
     width: 23px;
     margin: 6px auto;
-    background: var(--dark);
+    background: var(--navy);
+    transition: transform .3s;
   }
 
   .navigation {
     display: none;
     position: absolute;
-    top: 75px;
+    top: 100%;
     left: 0;
     right: 0;
     padding: 28px 7%;
@@ -959,6 +989,7 @@ footer a {
     top: -25px;
     width: 75px;
     height: 75px;
+    font-size: 20px;
   }
 
   .hero-image-label {
@@ -1071,6 +1102,14 @@ footer a {
     height: 230px;
   }
 
+  .gallery-item > span {
+    font-size: 8px;
+  }
+
+  .gallery-item b {
+    font-size: 14px;
+  }
+
   .contact {
     padding: 80px 7%;
   }
@@ -1088,17 +1127,67 @@ footer a {
     display: block;
   }
 
+  .footer-logo .brand-logo {
+    width: 200px;
+    height: 68px;
+  }
+
+  .footer-top p {
+    margin-top: 20px;
+  }
+
   .footer-bottom {
     font-size: 8px;
   }
 }
 
-@media(prefers-reduced-motion: reduce) {
+/* SMALL PHONES */
+
+@media (max-width: 420px) {
+  .topbar {
+    font-size: 6px;
+  }
+
+  .brand-logo {
+    width: 165px;
+    height: 52px;
+  }
+
+  .hero h1 {
+    font-size: 65px;
+  }
+
+  .hero-actions {
+    gap: 18px;
+  }
+
+  .primary-button {
+    padding: 16px 18px;
+  }
+
+  .cinematic-top {
+    font-size: 6px;
+  }
+
+  .cinematic-scene h2 {
+    font-size: 57px;
+  }
+
+  .contact-phone {
+    font-size: 29px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     transition-duration: .01ms !important;
     animation-duration: .01ms !important;
   }
